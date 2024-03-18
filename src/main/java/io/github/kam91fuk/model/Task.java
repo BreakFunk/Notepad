@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
-public class Task implements Audit {
-
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,9 +16,9 @@ public class Task implements Audit {
     private boolean done;
     private LocalDateTime deadline;
     private LocalDateTime deadLines;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
 
+    @Embedded
+    private Audit audit = new Audit();
     public Task() {
     }
     public int getId() {
@@ -41,6 +40,7 @@ public class Task implements Audit {
         this.done = done;
     }
 
+
     public LocalDateTime getDeadline() {
         return deadline;
     }
@@ -60,23 +60,5 @@ public class Task implements Audit {
         description = source.description;
         done = source.done;
         deadline = source.deadline;
-    }
-
-    @Override
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    @Override
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public void setUpdatedOn(LocalDateTime updatedOn) {
-        this.updatedOn = updatedOn;
     }
 }
