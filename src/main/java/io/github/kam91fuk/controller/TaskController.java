@@ -1,10 +1,10 @@
 package io.github.kam91fuk.controller;
 
 import io.github.kam91fuk.model.Task;
-import io.github.kam91fuk.model.TaskRepository;
+import io.github.kam91fuk.repository.SqlTaskRepository;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,22 +14,21 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@Slf4j
+@RequiredArgsConstructor
 public class TaskController {
+    //The logger is replaced by @Slf4j
+    private final SqlTaskRepository repository;
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
-    private final TaskRepository repository;
-    public TaskController(final TaskRepository repository) {
-        this.repository = repository;
-    }
-
+    //the constructor is replaced by @RequiredArgsConstructor
     @GetMapping(value = "/tasks", params = {"!sort", "!page", "!size"})
     ResponseEntity<List<Task>>readAllTasks() {
-        logger.warn("Exposing all the tasks!");
+        log.warn("Exposing all the tasks!");
         return ResponseEntity.ok(repository.findAll());
     }
     @GetMapping("/tasks")
     ResponseEntity<List<Task>>readAllTasks(Pageable page){
-        logger.info("Custom pageable");
+        log.info("Custom pageable");
         return ResponseEntity.ok(repository.findAll(page).getContent());
     }
 

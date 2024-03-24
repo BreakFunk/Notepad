@@ -1,4 +1,4 @@
-package io.github.kam91fuk.model;
+package io.github.kam91fuk.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

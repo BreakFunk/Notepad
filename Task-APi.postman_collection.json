@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "8bf68a07-5dae-45fd-bc81-79dfac2dc886",
+		"name": "Task-APi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5650371"
+	},
+	"item": [
+		{
+			"name": "Create task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"description\":\"Test task\",\n    \"done\":false,\n    \"targetDate\":\"16/12/2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"description\":\"Test task updates\",\n    \"done\":false,\n    \"targetDate\":\"16/12/2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/tasks/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
